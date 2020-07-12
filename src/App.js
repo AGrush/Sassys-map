@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Map from './components/map/Map';
 import Navbar from './components/Navbar';
 
@@ -12,7 +12,7 @@ class App extends Component {
         newPlaces: '',
         places: [
           {
-            name: "Platinum Lace",
+            name: "PL",
             lat: 51.510228,
             lng: -0.132992,
             type: "alive",
@@ -261,27 +261,27 @@ class App extends Component {
   }
 
   // compare the filtered array with the original array in state and kick out the members of state.places that are missing in the filtered array
-  intersection = () => {
+  searchAdjustedArray = () => {
     const filteredList = this.state.places.filter(club =>
       club.name.toUpperCase().includes(this.state.letters.toUpperCase())
     );
-
-    const newPlacesList = filteredList.filter(x => this.state.places.includes(x));
-    console.log(newPlacesList)
-
-    // here, is where either the places array must be ammended and pasted into Map as prop, or a new array - newPlaces, must be ammended, and passed as props into map.. infinit loops
-    // this.setState({ newPlaces: newPlacesList })
-
+    this.setState ({ newPlaces: filteredList })
   }
 
+ 
+
   render() {
+    // useEffect( this.searchAdjustedArray,
+    //   [this.state.places, this.state.letters]);
+
+
 
     return (
       <div>
+        {console.log(this.state.newPlaces)}
         <Navbar
           childMethodToChangeState={this.searchState}
         />
-        {this.intersection()}
         <Map
           markers={this.state.places}
         />
