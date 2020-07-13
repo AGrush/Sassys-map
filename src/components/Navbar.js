@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from '../components/Search';
 
-const Navbar = ({ childMethodToChangeState }) => {
+const Navbar = ({ searchState, letters }) => {
 
         return (
             <nav className="d-flex navbar-expand-lg navbar-light bg-light">
@@ -30,7 +30,8 @@ const Navbar = ({ childMethodToChangeState }) => {
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <Search 
-                            childMethodToChangeState={childMethodToChangeState}
+                             searchState={searchState}
+                             letters={letters}
                         />
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>

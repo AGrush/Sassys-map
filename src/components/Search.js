@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Search = ({ childMethodToChangeState }) => {
-    const [text, setText] = useState('')
-
-    const searchChange = (q) => {
-        setText(q)
-        childMethodToChangeState(q)
-    }
+const Search = ({ searchState, letters }) => {
 
     return (
         <section className='search'>
-            <form>
                 <input
                     type='text'
                     className='form-control'
                     placeholders='Search Clubs'
-                    value={text}
-                    onChange={(e) => searchChange(e.target.value)}
+                    value={letters}
+                    onChange={(e) => searchState(e.target.value)}
                     autoFocus
                 />
-            </form>
         </section>
     )
 }
