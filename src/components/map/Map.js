@@ -10,9 +10,9 @@ const containerStyle = {
   height: '800px'
 };
 
-function MyComponent( places ) {
+const MyComponent = ({places, foundPlaces}) => {
 
-  let allTheMarkers = places.places.map(place => {
+  let allTheMarkers = places.map(place => {
     return (
         <Marker
             key={place.id}
@@ -23,7 +23,7 @@ function MyComponent( places ) {
     );
   })
 
-  let foundMarkers = places.foundPlaces.map(place => {
+  let foundMarkers = foundPlaces.map(place => {
     return (
         <Marker
             key={place.id}
@@ -44,7 +44,7 @@ function MyComponent( places ) {
         zoom={10}
       >
         
-        {foundMarkers ? foundMarkers : allTheMarkers}
+        {foundMarkers.length ? foundMarkers : allTheMarkers}
 
       </GoogleMap>
 
